@@ -30,12 +30,6 @@ class ShopList extends Component {
 
         return (
             <Container>
-                <Button
-                    color="dark"
-                    style={{ marginBottom: '2rem' }}
-                    onClick={null}>
-                    Add Item
-                </Button>
                 <ListGroup>
                     <TransitionGroup className="shopping--list">
                         {items.map(({ id, name }) => (
