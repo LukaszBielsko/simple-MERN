@@ -8,15 +8,15 @@ export const getItems = () => {
 }
                                             
 export const deleteItem = (id) => {
-    console.log('deleteItem action, id: ', id)
     return {
         type: actionTypes.DELETE_ITEM,
         id
     }
 }
 
-export const addItem = () => {
+export const addItem = (input) => {
     return {
-        type: actionTypes.ADD_ITEM
+        type: actionTypes.ADD_ITEM,
+        input
     }
 }
