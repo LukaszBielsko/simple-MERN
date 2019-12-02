@@ -1,7 +1,6 @@
 # Shopping list application build with MERN stack
-<!-- 
-[For heroku working demo click here.](https://print-fax-shop.herokuapp.com/ "For heroku working demo click here.") -->
 
+[For heroku working demo click here.](https://mern--shopping--list.herokuapp.com)
 ## Tech
 - MongoDB
 - Express
