@@ -7,6 +7,11 @@ import { getItems, deleteItem } from '../actions/itemActions';
 
 class ShopList extends Component {
 
+    componentDidMount(){
+            this.props.getItems()
+    }
+
+
     /* this is wrong as it just returns object
        this is imported from itemActions and not dispatched
        if this  
@@ -14,6 +19,7 @@ class ShopList extends Component {
     */
 
     onDeleteClick = id => this.props.deleteItem(id)
+
 
 
     render() {
@@ -26,22 +32,22 @@ class ShopList extends Component {
         map is not a function at eval 
         nope - i was getting an object not an array {items: []}*/
 
-        const { items } = this.props.items
+        const { items } = this.props.item
 
         return (
             <Container>
                 <ListGroup>
                     <TransitionGroup className="shopping--list">
-                        {items.map(({ id, name }) => (
+                        {items.map(({ _id, name }) => (
                             <CSSTransition
-                                key={id}
+                                key={_id}
                                 timeout={600}
                                 classNames="fade">
                                 <ListGroupItem>
                                     <Button className="remove-btn"
                                         color="danger"
                                         size="sm"
-                                        onClick={this.onDeleteClick.bind(this, id)}
+                                        onClick={this.onDeleteClick.bind(this, _id)}
                                     >
                                         &times;
                                     </Button>
@@ -57,22 +63,21 @@ class ShopList extends Component {
     }
 }
 
+const mapStateToProps = state => ({
+    item: state.item,
+});
 
-const mapStateToProps = state => {
-    return {
-        items: state.item
-    }
-}
 
-const mapDispatchToProps = dispatch => {
-    return {
-        getItems: () => dispatch(getItems()),
-        deleteItem: id => dispatch(deleteItem(id))
-    }
-}
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         getItems: () => dispatch(getItems()),
+//         deleteItem: id => dispatch(deleteItem(id))
+//     }
+// }
 
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
+    // mapDispatchToProps
+    { getItems, deleteItem }
 )(ShopList);
