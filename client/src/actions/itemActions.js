@@ -24,12 +24,13 @@ export const getItems = () => dispatch => {
         )
 };
 
-export const deleteItem = (id) => {
-    return {
-        type: actionTypes.DELETE_ITEM,
-        id
-    }
+export const deleteItem = (id) => dispatch => {
+    console.log(id)
+    axios
+        .delete(`/api/items/${id}`)
+        .then(() => dispatch(getItems()))
 }
+
 
 export const addItem = (input) => {
     return {

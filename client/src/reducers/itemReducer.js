@@ -24,7 +24,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.DELETE_ITEM:
             return {
                 ...state,
-                items: state.items.filter(item => item.id !== action.id)
+                items: state.items.filter(item => item._id !== action.id)
             }
         case actionTypes.ITEMS_LOADING:
             return {
