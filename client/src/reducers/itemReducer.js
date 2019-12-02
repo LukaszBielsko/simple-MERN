@@ -4,29 +4,32 @@ import * as actionTypes from '../actions/actionTypes';
 
 
 const initialState = {
-    items: [
-        { id: uuid(), name: 'eggs' },
-        { id: uuid(), name: 'steak' },
-        { id: uuid(), name: 'meat' },
-        { id: uuid(), name: 'milk' }
-    ]
+    items: [],
+    loading: false
 }
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.GET_ITEMS:
             return {
-                ...state
+                ...state,
+                items: action.payload,
+                loading: false
             };
-            case actionTypes.ADD_ITEM:
-                return {
-                    ...state,
-                    items: state.items.concat({id: uuid(), name: action.input})
-                }
+        case actionTypes.ADD_ITEM:
+            return {
+                ...state,
+                items: state.items.concat({ id: uuid(), name: action.input })
+            }
         case actionTypes.DELETE_ITEM:
             return {
                 ...state,
                 items: state.items.filter(item => item.id !== action.id)
+            }
+        case actionTypes.ITEMS_LOADING:
+            return {
+                ...state,
+                loading: true
             }
         default:
             return state

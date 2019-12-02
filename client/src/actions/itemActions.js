@@ -1,12 +1,29 @@
-import  * as actionTypes from '../actions/actionTypes';
+import axios from 'axios';
 
-export const getItems = () => {
-    console.log('getItems action says hallo')
-    return {
-        type: actionTypes.GET_ITEMS
-    }
-}
-                                            
+import * as actionTypes from '../actions/actionTypes';
+
+/* TODO spot the difference ;) */ 
+// export const getItems = (dispatch) => {
+//     axios.get('/api/items')
+//         .then(res =>
+//             dispatch({
+//                 type: actionTypes.GET_ITEMS,
+//                 payload: res.data
+//             }))
+// }
+
+export const getItems = () => dispatch => {
+    dispatch(setItemsLoading());
+    axios
+        .get('/api/items')
+        .then(res =>
+            dispatch({
+                type: actionTypes.GET_ITEMS,
+                payload: res.data
+            })
+        )
+};
+
 export const deleteItem = (id) => {
     return {
         type: actionTypes.DELETE_ITEM,
@@ -20,3 +37,9 @@ export const addItem = (input) => {
         input
     }
 }
+
+export const setItemsLoading = () => {
+    return {
+        type: actionTypes.ITEMS_LOADING,
+    }
+}  
