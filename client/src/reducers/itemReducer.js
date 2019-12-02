@@ -19,7 +19,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.ADD_ITEM:
             return {
                 ...state,
-                items: state.items.concat({ id: uuid(), name: action.input })
+                items: [action.payload, ...state.items]
             }
         case actionTypes.DELETE_ITEM:
             return {

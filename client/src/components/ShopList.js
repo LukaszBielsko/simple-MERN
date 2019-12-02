@@ -8,7 +8,6 @@ import { getItems, deleteItem } from '../actions/itemActions';
 class ShopList extends Component {
 
     componentDidMount(){
-        console.log('comp did mount ')
             this.props.getItems()
     }
 
@@ -34,7 +33,6 @@ class ShopList extends Component {
         nope - i was getting an object not an array {items: []}*/
 
         const { items } = this.props.item
-        console.log(items)
 
         return (
             <Container>

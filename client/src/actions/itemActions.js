@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import * as actionTypes from '../actions/actionTypes';
 
-/* TODO spot the difference ;) */ 
+/* TODO spot the difference ;) */
 // export const getItems = (dispatch) => {
 //     axios.get('/api/items')
 //         .then(res =>
@@ -32,11 +32,20 @@ export const deleteItem = (id) => dispatch => {
 }
 
 
-export const addItem = (input) => {
-    return {
-        type: actionTypes.ADD_ITEM,
-        input
-    }
+
+
+
+export const addItem = item => (dispatch) => {
+    axios.post('/api/items', item) //save to database
+        .then(res => {
+            // dispatch action that saves to redux 
+            // it saves response from server
+            // backend/routes/api/ items   newItem.save().then(item => res.json(item))
+            dispatch({ 
+                type: actionTypes.ADD_ITEM, 
+                payload: res.data
+            })
+        })
 }
 
 export const setItemsLoading = () => {
